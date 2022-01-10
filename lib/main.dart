@@ -10,13 +10,23 @@ void main() {
   //starting firebase
   WidgetsFlutterBinding.ensureInitialized();
 
-  //recupera a instancia do banco de dados
+  //retrieve the database instance
   Firestore db = Firestore.instance;
 
+  /*
+
+  //set data manually
   db
       .collection("usuarios")
       .document("002")
-      .setData({"nome": "Lara Lávisc", "idade": "25"});
+      .setData({"nome": "Lara", "idade": "25"});
+      */
+
+//set data automatically
+  db.collection("noticias").add({
+    "titulo": "Criada uma nova moeda virtual!!",
+    "descricao": "texto de exemplo...."
+  });
 
   runApp(MyApp());
 }
