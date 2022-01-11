@@ -51,17 +51,40 @@ void main() async {
     print("dados usuarios: " + dados.toString());
   }
   */
-
+/*
   WidgetsFlutterBinding.ensureInitialized();
   Firestore db = Firestore.instance;
 
-//utiliza o "listen" para notificar caso tenha alteração e atualizar a lista de visualização.
+//Uses "listen" to notify if there is a change and update the watch list.
   db.collection("usuarios").snapshots().listen((snapshot) {
     for (DocumentSnapshot item in snapshot.documents) {
       var dados = item.data;
       print("dados usuarios: " + dados.toString());
     }
   });
+
+  */
+
+  //Applying filters
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  Firestore db = Firestore.instance;
+
+  QuerySnapshot querySnapshot = await db
+      .collection("usuarios")
+      //.where("nome", isEqualTo: "lara")
+      .where("idade", isGreaterThan: "15")
+      //.where("idade", isLessThan: "26")
+      .orderBy("idade", descending: true)
+      .orderBy("nome", descending: false)
+      .limit(3)
+      .getDocuments();
+
+  for (DocumentSnapshot item in querySnapshot.documents) {
+    var dados = item.data;
+    print("filtro nome: ${dados["nome"]} idade: ${dados["idade"]}");
+  }
 
   runApp(MyApp());
 }
