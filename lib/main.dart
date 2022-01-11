@@ -6,6 +6,11 @@ Code => Preferences => Settings => Search setting,
 type in "flutter test" => Dart: Flutter Test Additional Args, 
 Add item => Add "--no-sound-null-safety"
 */
+/*
+Code => Preferences => Settings => Search setting, 
+type in "flutter run additional args", 
+Add item => Add "--no-sound-null-safety"
+*/
 void main() {
   //starting firebase
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,10 +28,8 @@ void main() {
       */
 
 //set data automatically
-  db.collection("noticias").add({
-    "titulo": "Criada uma nova moeda virtual!!",
-    "descricao": "texto de exemplo...."
-  });
+  db.collection("noticias").add(
+      {"titulo": "Notícia de teste!!! ", "descricao": "texto de exemplo...."});
 
   runApp(MyApp());
 }
