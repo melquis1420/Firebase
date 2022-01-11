@@ -74,11 +74,13 @@ void main() async {
   QuerySnapshot querySnapshot = await db
       .collection("usuarios")
       //.where("nome", isEqualTo: "lara")
-      .where("idade", isGreaterThan: "15")
+      //.where("idade", isGreaterThan: "15")
       //.where("idade", isLessThan: "26")
-      .orderBy("idade", descending: true)
-      .orderBy("nome", descending: false)
-      .limit(3)
+      //.orderBy("idade", descending: true)
+      //.orderBy("nome", descending: false)
+      //.limit(3)
+      .where("nome", isGreaterThanOrEqualTo: "m")
+      .where("nome", isLessThanOrEqualTo: "m" + "\uf8ff") //take part of string
       .getDocuments();
 
   for (DocumentSnapshot item in querySnapshot.documents) {
